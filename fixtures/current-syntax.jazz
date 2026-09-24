@@ -1,0 +1,33 @@
+from AES require "aes-core.jinc" "aes-round.jinc";
+
+#[mmx]
+type lane = u32;
+
+namespace AES {
+  param int ROUNDS = 10;
+  u256 round_mask = 0x0000_0000_0000_0000;
+  exec preserve(0:32);
+
+  /* The outer comment contains a nested comment.
+     /* nested */
+   */
+  #[returnaddress=stack]
+  export
+  fn round(#[mmx] reg const ptr lane[4] source, reg mut ptr lane[4] destination) -> reg ptr lane[4] {
+    global u64 state = 0;
+    reg ui32 word;
+    reg si64 offset;
+    reg u256 whole;
+    reg u64 packed;
+
+    word = #set0();
+    word = [#aligned :u32 source + 0];
+    word +=32u 1;
+    packed = (4u16)[0x00ff, 0b0101, 0o07, 1_024];
+    whole = (uint) packed;
+    state = AES::round(word);
+    ArrayInit(destination);
+    assert("round count", ROUNDS > 0);
+    return destination;
+  }
+}

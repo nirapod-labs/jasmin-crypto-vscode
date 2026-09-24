@@ -10,6 +10,8 @@
     {"include": "#comments"},
     {"include": "#strings"},
     {"include": "#attributes"},
+    {"include": "#intrinsics"},
+    {"include": "#namespace-declaration"},
     {"include": "#function-declaration"},
     {"include": "#keywords"},
     {"include": "#storage"},
@@ -33,7 +35,10 @@
           "end": "\\*/",
           "endCaptures": {
             "0": {"name": "punctuation.definition.comment.end.jasmin.crypto"}
-          }
+          },
+          "patterns": [
+            {"include": "#comments"}
+          ]
         }
       ]
     },
@@ -56,7 +61,39 @@
     },
     "attributes": {
       "name": "meta.attribute.jasmin.crypto",
-      "match": "#\\[[^\\]\\r\\n]*\\]"
+      "begin": "#\\[",
+      "beginCaptures": {
+        "0": {"name": "punctuation.definition.annotation.begin.jasmin.crypto"}
+      },
+      "end": "\\]",
+      "endCaptures": {
+        "0": {"name": "punctuation.definition.annotation.end.jasmin.crypto"}
+      },
+      "patterns": [
+        {"include": "#keywords"},
+        {"include": "#storage"},
+        {"include": "#types"},
+        {"include": "#constants"}
+      ]
+    },
+    "intrinsics": {
+      "patterns": [
+        {
+          "name": "storage.modifier.alignment.jasmin.crypto",
+          "match": "#(?:aligned|unaligned)\\b"
+        },
+        {
+          "name": "support.function.intrinsic.jasmin.crypto",
+          "match": "#[A-Za-z_][A-Za-z0-9_]*"
+        }
+      ]
+    },
+    "namespace-declaration": {
+      "match": "\\b(namespace)\\s+([A-Za-z_][A-Za-z0-9_]*)",
+      "captures": {
+        "1": {"name": "keyword.declaration.namespace.jasmin.crypto"},
+        "2": {"name": "entity.name.namespace.jasmin.crypto"}
+      }
     },
     "function-declaration": {
       "match": "\\b(fn)\\s+([A-Za-z_][A-Za-z0-9_]*)",
@@ -66,16 +103,36 @@
       }
     },
     "keywords": {
-      "name": "keyword.control.jasmin.crypto",
-      "match": "\\b(?:require|fn|for|to|downto|while|if|else|return|in)\\b"
+      "patterns": [
+        {
+          "name": "keyword.declaration.jasmin.crypto",
+          "match": "\\b(?:type|namespace)\\b"
+        },
+        {
+          "name": "keyword.control.jasmin.crypto",
+          "match": "\\b(?:require|from|fn|for|to|downto|while|if|else|return|assert|exec|ArrayInit)\\b"
+        }
+      ]
     },
     "storage": {
       "name": "storage.modifier.jasmin.crypto",
-      "match": "\\b(?:reg|stack|ptr|export|inline|param)\\b"
+      "match": "\\b(?:reg|stack|ptr|export|inline|param|global|const|mut)\\b"
     },
     "types": {
-      "name": "storage.type.jasmin.crypto",
-      "match": "\\b(?:int|bool|u(?:8|16|32|64|128)|s(?:8|16|32|64|128))\\b"
+      "patterns": [
+        {
+          "name": "storage.type.jasmin.crypto",
+          "match": "\\b(?:bool|int|sint|uint|u(?:8|16|32|64|128|256)|ui(?:8|16|32|64|128|256)|si(?:8|16|32|64|128|256))\\b"
+        },
+        {
+          "name": "storage.type.jasmin.crypto",
+          "match": "\\b(?:1|2|4|8|16|32|64|128)(?:w|s|u|si|ui)\\b"
+        },
+        {
+          "name": "storage.type.jasmin.crypto",
+          "match": "\\b(?:2|4|8|16|32)[su](?:1|2|4|8|16|32|64|128)\\b"
+        }
+      ]
     },
     "constants": {
       "patterns": [
@@ -85,13 +142,21 @@
         },
         {
           "name": "constant.numeric.jasmin.crypto",
-          "match": "\\b(?:0[xX][0-9A-Fa-f]+|0[bB][01]+|[0-9]+(?:u(?:8|16|32|64|128))?)\\b"
+          "match": "\\b(?:0[xX][0-9A-Fa-f]+(?:_+[0-9A-Fa-f]+)*|0[bB][01]+(?:_+[01]+)*|0[oO][0-7]+(?:_+[0-7]+)*|[0-9]+(?:_+[0-9]+)*)"
         }
       ]
     },
     "operators": {
-      "name": "keyword.operator.jasmin.crypto",
-      "match": "(?:<<r=|>>r=|<<=|>>=|\\+=|-=|\\*=|/=|&=|\\|=|\\^=|==|!=|<=|>=|->|<<r|>>r|<<|>>|&&|\\|\\||[=+*/%&|^~!<>-])"
+      "patterns": [
+        {
+          "name": "punctuation.accessor.namespace.jasmin.crypto",
+          "match": "::"
+        },
+        {
+          "name": "keyword.operator.jasmin.crypto",
+          "match": "(?:->|<<r|>>r|<<|>>|<=|>=|==|!=|&&|\\|\\||[+*/%&|^~-])(?:(?:[0-9]+[su][0-9]+|[0-9]+[su]|[su]))?=?|[=<>!?]"
+        }
+      ]
     }
   }
 }

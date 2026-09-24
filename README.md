@@ -35,6 +35,11 @@ extension. Its attribution and license notice are retained in
 The repository is being established with a focused grammar, reproducible
 validation, and contributor workflow before a future GitHub Linguist proposal.
 
+The grammar covers current source-level forms including namespaces, type aliases,
+named `require` paths, pointer qualifiers, intrinsics, alignment annotations,
+assertions, numeric literals, and operator size annotations. It remains an editor
+grammar, not a parser or a correctness claim for Jasmin programs.
+
 ## Development
 
 CI uses Node.js 22 and pnpm. From a fresh checkout:
