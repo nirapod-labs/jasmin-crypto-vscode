@@ -1,0 +1,25 @@
+name: Grammar bug
+description: Report incorrect highlighting or tokenization.
+title: "grammar: "
+labels: ["grammar"]
+body:
+  - type: textarea
+    id: source
+    attributes:
+      label: Minimal Jasmin source
+      description: Include the smallest `.jazz` or `.jinc` example that demonstrates the problem.
+      render: jasmin
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected highlighting
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual highlighting
+    validations:
+      required: true

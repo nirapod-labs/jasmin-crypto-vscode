@@ -1,0 +1,19 @@
+name: Syntax coverage
+description: Propose support for a current Jasmin construct.
+title: "coverage: "
+labels: ["grammar", "coverage"]
+body:
+  - type: textarea
+    id: construct
+    attributes:
+      label: Syntax construct and source
+      description: Link the Jasmin documentation or source that establishes the syntax.
+    validations:
+      required: true
+  - type: textarea
+    id: example
+    attributes:
+      label: Minimal example
+      render: jasmin
+    validations:
+      required: true
