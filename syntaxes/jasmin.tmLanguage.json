@@ -1,0 +1,97 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Jasmin Crypto",
+  "scopeName": "source.jasmin.crypto",
+  "fileTypes": [
+    "jazz",
+    "jinc"
+  ],
+  "patterns": [
+    {"include": "#comments"},
+    {"include": "#strings"},
+    {"include": "#attributes"},
+    {"include": "#function-declaration"},
+    {"include": "#keywords"},
+    {"include": "#storage"},
+    {"include": "#types"},
+    {"include": "#constants"},
+    {"include": "#operators"}
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.double-slash.jasmin.crypto",
+          "match": "//.*$"
+        },
+        {
+          "name": "comment.block.jasmin.crypto",
+          "begin": "/\\*",
+          "beginCaptures": {
+            "0": {"name": "punctuation.definition.comment.begin.jasmin.crypto"}
+          },
+          "end": "\\*/",
+          "endCaptures": {
+            "0": {"name": "punctuation.definition.comment.end.jasmin.crypto"}
+          }
+        }
+      ]
+    },
+    "strings": {
+      "name": "string.quoted.double.jasmin.crypto",
+      "begin": "\"",
+      "beginCaptures": {
+        "0": {"name": "punctuation.definition.string.begin.jasmin.crypto"}
+      },
+      "end": "\"",
+      "endCaptures": {
+        "0": {"name": "punctuation.definition.string.end.jasmin.crypto"}
+      },
+      "patterns": [
+        {
+          "name": "constant.character.escape.jasmin.crypto",
+          "match": "\\\\."
+        }
+      ]
+    },
+    "attributes": {
+      "name": "meta.attribute.jasmin.crypto",
+      "match": "#\\[[^\\]\\r\\n]*\\]"
+    },
+    "function-declaration": {
+      "match": "\\b(fn)\\s+([A-Za-z_][A-Za-z0-9_]*)",
+      "captures": {
+        "1": {"name": "keyword.control.jasmin.crypto"},
+        "2": {"name": "entity.name.function.jasmin.crypto"}
+      }
+    },
+    "keywords": {
+      "name": "keyword.control.jasmin.crypto",
+      "match": "\\b(?:require|fn|for|to|downto|while|if|else|return|in)\\b"
+    },
+    "storage": {
+      "name": "storage.modifier.jasmin.crypto",
+      "match": "\\b(?:reg|stack|ptr|export|inline|param)\\b"
+    },
+    "types": {
+      "name": "storage.type.jasmin.crypto",
+      "match": "\\b(?:int|bool|u(?:8|16|32|64|128)|s(?:8|16|32|64|128))\\b"
+    },
+    "constants": {
+      "patterns": [
+        {
+          "name": "constant.language.boolean.jasmin.crypto",
+          "match": "\\b(?:true|false)\\b"
+        },
+        {
+          "name": "constant.numeric.jasmin.crypto",
+          "match": "\\b(?:0[xX][0-9A-Fa-f]+|0[bB][01]+|[0-9]+(?:u(?:8|16|32|64|128))?)\\b"
+        }
+      ]
+    },
+    "operators": {
+      "name": "keyword.operator.jasmin.crypto",
+      "match": "(?:<<r=|>>r=|<<=|>>=|\\+=|-=|\\*=|/=|&=|\\|=|\\^=|==|!=|<=|>=|->|<<r|>>r|<<|>>|&&|\\|\\||[=+*/%&|^~!<>-])"
+    }
+  }
+}

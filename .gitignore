@@ -1,4 +1,5 @@
 node_modules/
 *.vsix
 coverage/
+.artifacts/
 .DS_Store
