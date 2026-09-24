@@ -35,6 +35,18 @@ extension. Its attribution and license notice are retained in
 The repository is being established with a focused grammar, reproducible
 validation, and contributor workflow before a future GitHub Linguist proposal.
 
+## Development
+
+CI uses Node.js 22 and pnpm. From a fresh checkout:
+
+```bash
+pnpm install --frozen-lockfile
+pnpm run validate
+```
+
+Validation checks manifest and scope invariants, tokenizes both `.jazz` and
+`.jinc` fixtures, and packages a VSIX without publishing it.
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md). Security-sensitive reports belong in

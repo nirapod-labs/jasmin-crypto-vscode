@@ -1,0 +1,70 @@
+{
+  "name": "jasmin-crypto-vscode",
+  "displayName": "Jasmin Crypto",
+  "description": "Community-maintained syntax highlighting for Jasmin (.jazz and .jinc).",
+  "version": "0.1.0",
+  "publisher": "nirapod-labs",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nirapod-labs/jasmin-crypto-vscode.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nirapod-labs/jasmin-crypto-vscode/issues"
+  },
+  "homepage": "https://github.com/nirapod-labs/jasmin-crypto-vscode#readme",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "keywords": [
+    "jasmin",
+    "cryptography",
+    "syntax-highlighting"
+  ],
+  "files": [
+    "syntaxes/**",
+    "language-configuration.json",
+    "package.json",
+    "README.md",
+    "LICENSE",
+    "NOTICE.md"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "jasmin-crypto",
+        "aliases": [
+          "Jasmin Crypto",
+          "jasmin-crypto"
+        ],
+        "extensions": [
+          ".jazz",
+          ".jinc"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "jasmin-crypto",
+        "scopeName": "source.jasmin.crypto",
+        "path": "./syntaxes/jasmin.tmLanguage.json"
+      }
+    ]
+  },
+  "scripts": {
+    "check": "node scripts/validate-json.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "package:check": "node scripts/package-check.mjs",
+    "validate": "pnpm run check && pnpm run test && pnpm run package:check"
+  },
+  "devDependencies": {
+    "@vscode/vsce": "^3.7.1",
+    "vscode-oniguruma": "^2.0.1",
+    "vscode-textmate": "^9.2.0"
+  },
+  "packageManager": "pnpm@11.21.0"
+}

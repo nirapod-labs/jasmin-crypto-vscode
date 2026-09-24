@@ -1,0 +1,10 @@
+require "shared-state.jinc"
+
+param int ROUNDS = 24;
+
+inline
+fn mix_round(reg u64 value) -> reg u64 {
+  value <<r= 13;
+  value ^= 0xffu64;
+  return value;
+}

@@ -1,0 +1,16 @@
+#[ct = "state -> state"]
+export
+fn rotate_columns(reg ptr u32[12] state) -> reg ptr u32[12] {
+  inline int column;
+  reg u32 x, y;
+
+  for column = 0 to 4 {
+    x = state[column];
+    x <<r= 24;
+    y = x ^ 0x9e377900;
+    state[column] = y;
+  }
+
+  // Keep the transformed state in the caller's register view.
+  return state;
+}
