@@ -78,3 +78,22 @@ test("tokenizes a .jinc include fixture", async () => {
     assert.ok(scopes.has(scope), `Expected ${scope}`);
   }
 });
+
+test("tokenizes current Jasmin language forms", async () => {
+  const scopes = await scopesForFixture("current-syntax.jazz");
+
+  for (const scope of [
+    "keyword.declaration.jasmin.crypto",
+    "keyword.declaration.namespace.jasmin.crypto",
+    "entity.name.namespace.jasmin.crypto",
+    "storage.modifier.jasmin.crypto",
+    "storage.modifier.alignment.jasmin.crypto",
+    "support.function.intrinsic.jasmin.crypto",
+    "storage.type.jasmin.crypto",
+    "constant.numeric.jasmin.crypto",
+    "comment.block.jasmin.crypto",
+    "punctuation.accessor.namespace.jasmin.crypto"
+  ]) {
+    assert.ok(scopes.has(scope), `Expected ${scope}`);
+  }
+});
