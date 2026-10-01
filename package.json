@@ -62,7 +62,7 @@
     "validate": "pnpm run check && pnpm run test && pnpm run package:check"
   },
   "devDependencies": {
-    "@vscode/vsce": "^3.7.1",
+    "@vscode/vsce": "^4.0.0",
     "vscode-oniguruma": "^2.0.1",
     "vscode-textmate": "^9.2.0"
   },
